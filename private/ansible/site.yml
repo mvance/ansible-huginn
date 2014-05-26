@@ -28,20 +28,5 @@
         state=present
         line='[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"'
 
-#     - name: Install ruby1.9.3
-#       apt: pkg=ruby1.9.3 state=present
-# 
-#     - name: Install ruby1.9.1-dev
-#       apt: pkg=ruby1.9.1-dev state=present
-# 
-#     - name: Install rubygems
-#       apt: pkg=rubygems state=present
-
-#     - name: Install rake
-#       gem: name=rake state=latest
-# 
-#     - name: Install bundle
-#       gem: name=rake state=latest
-
     - name: Clone Huginn
       git: repo=git://github.com/cantino/huginn.git dest=/home/vagrant/huginn update=no
