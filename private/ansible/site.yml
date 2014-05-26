@@ -30,3 +30,6 @@
 
     - name: Clone Huginn
       git: repo=git://github.com/cantino/huginn.git dest=/home/vagrant/huginn update=no
+
+    - name: Ruby | Gem install rake & bundle
+      shell: PATH=$PATH:/home/{{ user }}/.rvm/bin && rvm default@huginn --create do gem install rake bundle
