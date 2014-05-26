@@ -1,15 +1,16 @@
 ---
 - hosts: all
-  sudo: yes
   vars:
     ruby_version: 1.9.3
     user: vagrant
   tasks:
     - name: Update Apt cache
       apt: update_cache=yes
+      sudo: true
 
     - name: Install dependencies
       apt: pkg={{ item }} state=installed
+      sudo: true
       with_items:
         - libmysqlclient-dev
         - mysql-server
