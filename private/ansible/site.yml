@@ -17,10 +17,8 @@
         - git
         - curl
 
-    # RVM script will issue and error code despite a successful install, hence the suppression of errors.
     - name: Ruby | Install RVM (and suppress fail)
       shell: curl -L https://get.rvm.io | bash -s stable --quiet-curl --auto-dotfiles --ruby={{ ruby_version }} creates=/home/{{ user }}/.rvm
-    #  ignore_errors: true
     
     - name: Ruby | Add RVM to bash profile
       lineinfile:
@@ -29,11 +27,13 @@
         line='[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"'
 
     - name: Clone Huginn
-      git: repo=git://github.com/cantino/huginn.git dest=/home/vagrant/huginn update=no
+      git: repo=git://github.com/cantino/huginn.git dest=/home/{{ user }}/huginn update=no
 
     - name: Ruby | Gem install rake & bundle
-      shell: PATH=$PATH:/home/{{ user }}/.rvm/bin && rvm default@huginn --create do gem install rake bundle chdir=/home/vagrant/huginn
+      shell: PATH=$PATH:/home/{{ user }}/.rvm/bin && rvm default@huginn --create do gem install rake bundle chdir=/home/{{ user }}/huginn
 
+    # Though this step completes without errros, when logging in manually via
+    # ssh, it's as if the bundle hadn't been installed.
     # - name: Ruby | Run bundle
     #   shell: PATH=$PATH:/home/{{ user }}/.rvm/bin && rvm default@huginn --create do bundle chdir=/home/vagrant/huginn
 
