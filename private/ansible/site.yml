@@ -42,6 +42,5 @@
     #     $ cd huginn/
     #     $ bundle
     #     $ git remote add upstream https://github.com/cantino/huginn.git
-    #     $ cp .env.example .env
-    #     $ sed -i -e "s/REPLACE_ME_NOW\!/$(rake secret)/g" .env
+    #     $ sed -e "s/REPLACE_ME_NOW\!/$(rake secret)/g" .env.example > .env
     #     $ rake db:create && rake db:migrate && rake db:seed && foreman start
