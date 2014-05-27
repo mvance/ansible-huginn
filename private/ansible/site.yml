@@ -32,4 +32,16 @@
       git: repo=git://github.com/cantino/huginn.git dest=/home/vagrant/huginn update=no
 
     - name: Ruby | Gem install rake & bundle
-      shell: PATH=$PATH:/home/{{ user }}/.rvm/bin && rvm default@huginn --create do gem install rake bundle
+      shell: PATH=$PATH:/home/{{ user }}/.rvm/bin && rvm default@huginn --create do gem install rake bundle chdir=/home/vagrant/huginn
+
+    # - name: Ruby | Run bundle
+    #   shell: PATH=$PATH:/home/{{ user }}/.rvm/bin && rvm default@huginn --create do bundle chdir=/home/vagrant/huginn
+
+    # Log into the guest machine (using "vagrant ssh") and run the following commands:
+    #
+    #     $ cd huginn/
+    #     $ bundle
+    #     $ git remote add upstream https://github.com/cantino/huginn.git
+    #     $ cp .env.example .env
+    #     $ sed -i -e "s/REPLACE_ME_NOW\!/$(rake secret)/g" .env
+    #     $ rake db:create && rake db:migrate && rake db:seed && foreman start
